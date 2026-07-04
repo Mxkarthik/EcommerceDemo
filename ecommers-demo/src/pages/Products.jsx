@@ -1,10 +1,13 @@
 import products from "../data/products";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function Products() {
   return (
     <div className="bg-gray-100 min-h-screen">
+
+      <Navbar />
 
       {/* Hero */}
 

@@ -1,35 +1,19 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-const products = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: "$149",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: "$199",
-    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600"
-  },
-  {
-    id: 3,
-    name: "Gaming Mouse",
-    price: "$69",
-    image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=600"
-  },
-  {
-    id: 4,
-    name: "Mechanical Keyboard",
-    price: "$129",
-    image: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=600"
-  }
-];
+import Navbar from "../components/Navbar";
+import { useCart } from "../context/CartContext";
+import productsData from "../data/products";
+
+// Use only the first 4 products from the shared data (so prices are numbers)
+const featuredProducts = productsData.slice(0, 4);
 
 export default function Home() {
+  const { addToCart } = useCart();
+
   return (
     <div className="bg-gray-50 min-h-screen">
+
+      <Navbar />
 
       {/* Hero Section */}
 
@@ -55,6 +39,7 @@ export default function Home() {
         </div>
 
       </section>
+
       {/* Featured */}
 
       <section className="max-w-7xl mx-auto py-16 px-6">
@@ -65,7 +50,7 @@ export default function Home() {
 
         <div className="grid md:grid-cols-4 gap-8">
 
-          {products.map(product => (
+          {featuredProducts.map(product => (
 
             <div
               key={product.id}
@@ -74,6 +59,7 @@ export default function Home() {
 
               <img
                 src={product.image}
+                alt={product.name}
                 className="h-56 w-full object-cover"
               />
 
@@ -84,10 +70,13 @@ export default function Home() {
                 </h3>
 
                 <p className="text-blue-600 font-semibold mt-2">
-                  {product.price}
+                  ${product.price}
                 </p>
 
-                <button className="mt-5 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                <button
+                  onClick={() => addToCart(product)}
+                  className="mt-5 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+                >
                   Add to Cart
                 </button>
 

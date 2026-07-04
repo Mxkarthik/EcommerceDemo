@@ -1,33 +1,39 @@
+import { useCart } from "../context/CartContext";
+
 export default function ProductCard({ product }) {
-  return (
-    <div className="bg-white rounded-2xl shadow hover:shadow-xl transition duration-300 overflow-hidden">
 
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-60 object-cover"
-      />
+    const { addToCart } = useCart();
 
-      <div className="p-5">
+    return (
 
-        <span className="text-sm text-blue-600 font-medium">
-          {product.category}
-        </span>
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
 
-        <h3 className="text-xl font-bold mt-2">
-          {product.name}
-        </h3>
+            <img
+               src={product.image}
+               alt={product.name}
+               className="w-full h-52 object-cover"
+            />
 
-        <p className="text-2xl font-bold mt-3 text-gray-900">
-          ${product.price}
-        </p>
+            <div className="p-5">
 
-        <button className="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition">
-          Add to Cart
-        </button>
+                <h2 className="text-xl font-bold">
+                    {product.name}
+                </h2>
 
-      </div>
+                <p className="text-blue-600 font-semibold">
+                    ${product.price}
+                </p>
 
-    </div>
-  );
+                <button
+                    onClick={() => addToCart(product)}
+                    className="mt-5 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    );
 }
