@@ -11,3 +11,4 @@ createRoot(document.getElementById('root')).render(
   </CartProvider>
   </StrictMode>
 )
+// Documnetation of routes done 
