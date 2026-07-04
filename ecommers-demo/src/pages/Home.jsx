@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import Footer from "../components/Footer";
 const products = [
   {
     id: 1,
@@ -55,7 +55,6 @@ export default function Home() {
         </div>
 
       </section>
-
       {/* Featured */}
 
       <section className="max-w-7xl mx-auto py-16 px-6">
@@ -119,6 +118,7 @@ export default function Home() {
         </div>
 
       </section>
+      <Footer />
 
     </div>
   );
